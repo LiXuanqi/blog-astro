@@ -1,20 +1,24 @@
 ---
-title: 'The top k elements in array'
-date: '2023-08-15'
-tags: ['algorithm']
+title: "The top k elements in array"
+date: "2023-08-15"
+tags: ["algorithm"]
 isDraft: false
 summary: Find the top k elements in an unsorted array
 ---
 
 ## Problem
+
 Given a list of elements, we need return the top k elements in any order.
 
 For example,
+
 ```
 nums = [2, 4, 7, 1, 3, 10]
 k = 3
 ```
+
 Let's find the top k **smallest** elements.
+
 ```
 return = [1, 2, 3]
 ```
@@ -22,6 +26,7 @@ return = [1, 2, 3]
 Sometimes, we problem hava different definitions of 'top', e.g. [Leetcode 973. K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/). The order is the distance to origin `√(x1 - x2)^2 + (y1 - y2)^2)` in this case.
 
 Let's define the helper function to calculate.
+
 ```python
 def distance_to_origin(point):
     return point[0] ** 2 + point[1] ** 2
@@ -32,9 +37,9 @@ In following sections, we will discuss this problem as an example.
 ## Solution 1: heapify and min heap
 
 Steps:
+
 1. Make all points to a **min** heap.
 2. pop k elements out of heap.
-
 
 ```python
 class Solution:
@@ -71,6 +76,7 @@ class Solution:
 ```
 
 ## Solution 3: quick select
+
 ```python
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
@@ -106,4 +112,4 @@ def quick_select(points, start, end, k):
         quick_select(points, start, right, k)
     elif k >= left:
         quick_select(points, left, end, k)
-```       
+```

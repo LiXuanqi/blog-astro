@@ -1,21 +1,25 @@
 ---
-title: 'Trie'
-date: '2023-12-02'
-tags: ['algorithm']
+title: "Trie"
+date: "2023-12-02"
+tags: ["algorithm"]
 isDraft: false
 summary: Trie is an efficient data structure for storing and retrieving strings, particularly when there is a need for prefix-based operations
 ---
 
 ## Introduction
+
 Trie, also known as a prefix tree, is a data structure used for efficient retrieval of strings or words, particularly when there is a need for prefix-based operations. e.g. Autocomplete
 
 It has 3 main operations:
+
 - insert(word): add a new word to trie.
 - find(word): determine if a given word exists in the trie.
 - start_with(): find all words in the trie that have a given prefix
 
 ## TrieNode
+
 Bellow is a trie which stores words: app, apple, apply and boy
+
 <div class="w-96">
 ![TrieNode](/static/images/trie.png)
 </div>
@@ -34,6 +38,7 @@ class Trie:
 ```
 
 ## Insert
+
 ```python
 def insert(self, word):
     curr = self.root
@@ -43,9 +48,11 @@ def insert(self, word):
         curr = node.children[c]
     node.is_word_end = True
 ```
+
 Starts from the root and iterate all characters in the given words. Create new node as necessary and mark the last node as the end of word.
 
 ## Find
+
 ```python
 def find(self, word):
     curr = self.root
@@ -57,9 +64,11 @@ def find(self, word):
 ```
 
 `find(word)` is very similar to `insert(word)`. The differences are:
+
 - return `False` if node doesn't exist
 - check whether last node is a word or partial string. e.g. If trie only has word "apple" and we call `find(app)`, the path exists, but it's not a word.
 
 ## Related questions
+
 - [LC208](https://leetcode.com/problems/implement-trie-prefix-tree/description/)
 - [LC1166](https://leetcode.com/problems/design-file-system/)

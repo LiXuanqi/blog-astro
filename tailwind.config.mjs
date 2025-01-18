@@ -5,4 +5,5 @@ export default {
     extend: {},
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  // darkMode: 'selector', // TODO: support toggle light and dark mode
 };

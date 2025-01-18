@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 
 import vercel from "@astrojs/vercel/serverless";
+import yaml from "@rollup/plugin-yaml";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,5 +15,8 @@ export default defineConfig({
   redirects: {
     // TODO: build home page and remove this redirect
     "/": "/blog",
+  },
+  vite: {
+    plugins: [yaml()],
   },
 });

@@ -57,3 +57,9 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<script>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  // document.documentElement.classList.add("dark");
+  // document.documentElement.classList.remove("dark");
+</script>

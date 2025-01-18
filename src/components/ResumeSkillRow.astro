@@ -1,0 +1,15 @@
+---
+const { category, items } = Astro.props;
+---
+
+<div class="flex">
+  <span
+    style={{
+      fontWeight: "bold",
+      textTransform: "capitalize",
+      marginRight: "6px",
+    }}
+    >{category}:
+  </span>
+  <p>{items.join(", ")}</p>
+</div>

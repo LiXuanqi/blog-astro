@@ -1,0 +1,158 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+
+import BaseHead from "../components/BaseHead.astro";
+import ResumeSection from "../components/ResumeSection.astro";
+import ResumeItem from "../components/ResumeItem.astro";
+import ResumeSkillRow from "../components/ResumeSkillRow.astro";
+import resume from "./resume.yaml";
+
+import "@fontsource-variable/montserrat";
+import "@fontsource-variable/roboto-slab";
+---
+
+<!doctype html>
+<html lang="en" class="text-black">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="bg-black p-[20px]">
+    <div
+      style="margin:0 auto;box-sizing:border-box;padding:0.3in;width:8.5in;height:12in;background-color:white;font-size:14px"
+    >
+      <div>
+        <h1
+          style="font-size: 200%; font-weight: 600; line-height: 1.4;"
+          class="text-center"
+        >
+          {resume.name}
+        </h1>
+        <div class="text-center">
+          <span>{resume.address} |</span>
+          <span>{resume.tel} |</span>
+          <span>{resume.email}</span>
+        </div>
+        <div class="text-center">
+          <a href={"http://" + resume.github}>{resume.github} | </a>
+          <a href={"http://" + resume.linkedin}>{resume.linkedin} | </a>
+          <a href={"http://" + resume.blog}>{resume.blog}</a>
+        </div>
+        <ResumeSection title="Education">
+          {
+            resume.education.map((university, index) => (
+              <ResumeItem
+                title={university.name}
+                time={university.time}
+                desc={university.desc}
+                key={index}
+              />
+            ))
+          }
+        </ResumeSection>
+        <ResumeSection title="Skills">
+          {
+            Object.keys(resume.skills).map((key, _) => (
+              <ResumeSkillRow
+                category={key}
+                items={resume.skills[key]}
+                key={key}
+              />
+            ))
+          }
+        </ResumeSection>
+        <ResumeSection title="Work Experience">
+          {
+            resume.work_experience.map((job, index) => (
+              <ResumeItem
+                title={job.company + ", " + job.position}
+                time={job.time}
+                location={job.location}
+                desc={job.desc}
+                key={index}
+              />
+            ))
+          }
+        </ResumeSection>
+        <ResumeSection title="Projects">
+          {
+            resume.projects.map((project, index) => (
+              <ResumeItem
+                title={project.name}
+                desc={project.desc}
+                key={index}
+              />
+            ))
+          }
+        </ResumeSection>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  h1 {
+    font-family: "Roboto Slab Variable", serif;
+    font-weight: 600;
+  }
+
+  body {
+    font-family: "Cambria", "Montserrat Variable", sans-serif;
+  }
+
+  /* body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    font-size: 14px;
+    font-family: "Cambria", "Montserrat Variable", sans-serif;
+  }
+  * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 10mm auto;
+    border: 1px #d3d3d3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  .subpage {
+    padding: 1cm;
+    border: 5px red solid;
+    height: 257mm;
+    outline: 2cm #ffeaea solid;
+  }
+  h1,
+  h2 {
+    font-family: "Roboto Slab Variable", serif;
+    font-weight: 600;
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  @media print {
+    html,
+    body {
+      width: 210mm;
+      height: 297mm;
+    }
+    .page {
+      margin: 0;
+      border: initial;
+      border-radius: initial;
+      width: initial;
+      min-height: initial;
+      box-shadow: initial;
+      background: initial;
+      page-break-after: always;
+    }
+  } */
+</style>

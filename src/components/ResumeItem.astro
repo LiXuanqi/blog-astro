@@ -1,0 +1,39 @@
+---
+const { title, location = "", time = "", desc } = Astro.props;
+---
+
+<div>
+  <div class="flex justify-between">
+    <div>
+      <div class="flex flex-row items-center">
+        <!-- {getCompanyIcon(title)} -->
+        <h3
+          style={{
+            fontWeight: 700,
+            fontSize: "110%",
+          }}
+        >
+          {title}
+        </h3>
+      </div>
+      <span>{location}</span>
+    </div>
+    <div
+      style={{
+        fontWeight: 700,
+        fontSize: "110%",
+      }}
+    >
+      <span>{time}</span>
+    </div>
+  </div>
+  <ul class="list-disc pl-8">
+    {
+      desc.map((item, index) => (
+        <li key={index}>
+          <Fragment set:html={item} />
+        </li>
+      ))
+    }
+  </ul>
+</div>
